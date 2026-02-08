@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Corredores - Coffee Run 2026</title>
+    <!-- Vincular Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Registro de Corredores</h2>
+
+        <!-- Formulario para ingresar los nombres y apellidos -->
+        <form id="formCorredores">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" required>
+            </div>
+            <div class="mb-3">
+                <label for="electrolit" class="form-label">¿Cuántas cajas de Electrolit se van a rifar? (0 a 6)</label>
+                <input type="number" class="form-control" id="electrolit" name="electrolit" min="0" max="6" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <!-- Mostrar los productos a rifar -->
+        <div class="mt-4">
+            <h3>Productos a Rifar:</h3>
+            <ul id="productos">
+                <!-- Aquí se agregarán los productos que se van a rifar -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Obtener el formulario y los productos a rifar
+        document.getElementById('formCorredores').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+            // Recoger los datos del formulario
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var electrolit = document.getElementById('electrolit').value;
+
+            // Mostrar la información del corredor registrado
+            alert('Corredor registrado: ' + nombre + ' ' + apellido);
+
+            // Productos a rifar
+            var productos = [
+                { nombre: 'Cajas de Electrolit', cantidad: electrolit },
+                { nombre: 'Inscripciones en carrera la grupetta', cantidad: 2 },
+                { nombre: 'Camisas Nike Grupetta', cantidad: 5 },
+                { nombre: 'Pastel Gratis Lorena', cantidad: 1 },
+                { nombre: 'Estadia Gratis', cantidad: 1 }
+            ];
+
+            var listaProductos = document.getElementById('productos');
+            listaProductos.innerHTML = ''; // Limpiar la lista de productos
+
+            // Mostrar los productos, omitiendo los de cantidad 0
+            productos.forEach(function (producto) {
+                if (producto.cantidad > 0) {
+                    var li = document.createElement('li');
+                    li.textContent = producto.nombre + ' - ' + producto.cantidad + ' disponible(s)';
+                    listaProductos.appendChild(li);
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
